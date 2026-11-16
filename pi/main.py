@@ -93,15 +93,15 @@ writer.start()
 
 # --- BOUCLE DE CODE PRINCIPALE (ex: intelligence artificielle, navigation, IA, etc.) ---
 try:
-  
+  # TODO : vérifier qu'on ne reçoit jamais une commande en angle et en distance en même temps. Sinon renvoyer une erreur
   # La Pi peut envoyer des ordres quand il veut, totalement indépendamment de la télémétrie.
   time.sleep(2)
   print("\n--- Simulation : Ordre de rotation de 90° ---")
-  command_queue.put({'cmd': 'rotate', 'angle': 90.0})
+  command_queue.put({'cmd': 'rotation', 'angle': 90.0})
 
   time.sleep(3)
   print('\n--- Simulation : Ordre de ligne droite vers X=2.0, Y=5.5 ---')
-  command_queue.put({'cmd': 'line', 'x': 2.0, 'y': 5.5})
+  command_queue.put({'cmd': 'ligne', 'dist': 2.0}) # positif = avancer, négatif = reculer. 
 
   # Exemple de récupération de données dans la struct pour les imprimer
   while True:

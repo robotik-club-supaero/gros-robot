@@ -1,3 +1,4 @@
+#include "main.h"
 #include "core_pins.h"
 #include "pins_arduino.h"
 #include <ArduinoJson.h>
@@ -19,6 +20,9 @@ struct RobotState {
   float battery_voltage;
   GpsData gps; // Structure imbriquée
 };
+
+GpsData data;
+RobotState state;
 
 const int pinPot1 = A17;
 const int pinPot2 = A16;
@@ -52,10 +56,10 @@ void loop() {
   float valPot1 = map(analogRead(pinPot1),0,1023,0,360);
   float valPot2 = map(analogRead(pinPot2),0,1023,0,360);
 
-  GpsData data = {valPot1,valPot2};
+  data = {valPot1,valPot2};
 
-  RobotState state = { millis(), 22.4f, data};
-  send_json_loop()
+  state = { millis(), 22.4f, data};
+  send_json_loop();
 }
 
 void send_json_loop() {
