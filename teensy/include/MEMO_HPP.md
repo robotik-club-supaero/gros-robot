@@ -28,7 +28,7 @@ struct MaStruct {
 
 // Signatures des fonctions dont auront besoin les autres bouts de code pour intéragir avec ce bout de code
 void capteur_setup(void);
-ma_struct capteur_lire(void);
+MaStruct capteur_lire(void);
 
 // idem, les fonctions nécessaires à l'implémentation interne resteront cachées dans le .cpp !
 

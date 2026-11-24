@@ -58,15 +58,15 @@ void odom_loop(bool print_wanted) {
 
   // Calcul du déplacement linéaire et angulaire sur l'élément de parcours dl
   float deltaDistance = (distD + distG) / 2.0;
-  float deltaTheta = RAD_TO_DEG * (distD - distG) / ENTRAXE_CM;
+  float deltaTheta = RAD_VERS_DEG * (distD - distG) / ENTRAXE_CM;
 
   // Mise à jour de la position.
   // Hypothèse sous jacente : 
   // On suppose que pendant un très court instant, le robot avance tout droit selon son orientation actuelle (theta),
   // puis tourne sur lui-même de deltaTheta. D'où le fait qu'on fasse les calculs avec l'ancien theta. 
   
-  x     += deltaDistance * cos(theta*DEG_TO_RAD);
-  y     += deltaDistance * sin(theta*DEG_TO_RAD);
+  x     += deltaDistance * cos(theta*DEG_VERS_RAD);
+  y     += deltaDistance * sin(theta*DEG_VERS_RAD);
   theta += deltaTheta;
 
   // Optionnel : garder theta entre -180 et +180

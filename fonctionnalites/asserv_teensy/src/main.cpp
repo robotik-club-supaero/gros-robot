@@ -17,6 +17,8 @@ void loop() {
   if (printTimer >= PRINT_INTERVAL_MS) {
     print_wanted = true; // on imprime à ce passage de boucle.
     printTimer = 0; // Reset du timer
+    Serial.println(DEG_VERS_RAD);
+    Serial.println(RAD_VERS_DEG);
   }
   
   odom_loop(print_wanted);
