@@ -75,7 +75,7 @@ void odom_loop(bool print_wanted) {
 
   if (print_wanted) {
     // Affichage pour debug
-    Serial.print("\t distG_tot (cm): "); Serial.print(distG_tot);
+    Serial.print("distG_tot (cm): "); Serial.print(distG_tot);
     Serial.print("\t distD_tot (cm): "); Serial.print(distD_tot);
     Serial.print("\t x (cm): "); Serial.print(x);
     Serial.print("\t y (cm): "); Serial.print(y);

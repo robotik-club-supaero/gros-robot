@@ -102,14 +102,17 @@ try:
   time.sleep(3)
   print('\n--- Simulation : Ordre de ligne droite vers X=2.0, Y=5.5 ---')
   command_queue.put({'cmd': 'line', 'x': 2.0, 'y': 5.5})
+  print("\n--- Simulation : Ordre de rotation de 90° ---")
+  command_queue.put({'cmd': 'rotate', 'angle': 90.0})
 
   # Exemple de récupération de données dans la struct pour les imprimer
   while True:
-    
-    lat=structs['gps']['lat']
-    long=structs['gps']['lon']
-
-    debug("telemetry",f"Télémétrie -> Lat: {lat}, Lon: {long}")
+    if structs is not None:
+        lat=structs['gps']['lat']
+        long=structs['gps']['lon']
+        debug("telemetry",f"Télémétrie -> Lat: {lat}, Lon: {long}")
+    else:
+      debug("telemetry", "En attente de la première trame de la Teensy...")
     time.sleep(0.2) # on ne les print que 5 fois par seconde sinon relou pour y voir quoi que ce soit
 
 except KeyboardInterrupt:

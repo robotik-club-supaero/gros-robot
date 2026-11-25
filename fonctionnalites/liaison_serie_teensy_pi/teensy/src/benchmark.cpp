@@ -24,8 +24,8 @@
 // uint32_t counter = 0;
 
 // // pour envoyer à fréquence fixe le json
-// elapsedMillis sendTimer;
-// const uint32_t SEND_INTERVAL_MS = 5; // Envoi tous les 5 ms (soit 200 Hz)
+// elapsedMillis send_json_timer;
+// const uint32_t JSON_INTERVAL_MS = 5; // Envoi tous les 5 ms (soit 200 Hz)
 // // à savoir qu'un envoi si le buffer n'est pas plein prend 27-28 micro secondes
 // // le buffer entier mets 62 ms à se déverser d'où l'utilité de l'envoi à fréquence fixe
 
@@ -46,8 +46,8 @@
 //   RobotState state = { millis(), 22.4f, data};
 
 //   // on envoie le json que quand il faut. 
-//   if (sendTimer >= SEND_INTERVAL_MS) {
-//     sendTimer = 0; // Reset du timer
+//   if (send_json_timer >= JSON_INTERVAL_MS) {
+//     send_json_timer = 0; // Reset du timer
     
 //     // début du timer pour faire le benchmark de l'envoi du json
 //     uint32_t start = micros();
