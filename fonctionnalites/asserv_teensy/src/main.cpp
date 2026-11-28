@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "odom.hpp"
 #include "constantes.hpp"
+#include "cmd_odrive.hpp"
 #include <elapsedMillis.h>
 
 elapsedMillis printTimer; // pour print quand on le veut.
@@ -10,6 +11,18 @@ void setup() {
   while (!Serial) ; // wait for Serial Monitor to open
   Serial.println("Serial Monitor ready!");
   odom_setup();
+  cmd_odrive_setup();
+
+
+  Serial.print("sending speed 1.0 to motor 0 for 5 seconds...\n");
+  cmd_odrive_machine_etats(true, true);
+  send_speed(3.0,0);
+  delay(10);
+  send_speed(3.0,1);
+  delay(800);
+  send_speed(0.0,0);
+  send_speed(0.0,1);
+  cmd_odrive_machine_etats(false, true);
 }
 
 void loop() {
@@ -17,9 +30,7 @@ void loop() {
   if (printTimer >= PRINT_INTERVAL_MS) {
     print_wanted = true; // on imprime à ce passage de boucle.
     printTimer = 0; // Reset du timer
-    Serial.println(DEG_VERS_RAD);
-    Serial.println(RAD_VERS_DEG);
   }
   
-  odom_loop(print_wanted);
+  odom_loop(false);
 }
